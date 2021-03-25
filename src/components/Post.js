@@ -21,13 +21,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Post({ elem }) {
   const mutation = useMutation(deletePost)
-  console.log(mutation)
   const classes = useStyles()
-
   function handleClick(id) {
     //
     try {
-      console.log(id)
       mutation.mutate({ id })
     } catch (error) {
       console.log(error)
