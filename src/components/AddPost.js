@@ -6,8 +6,9 @@ import {
   Typography
 } from "@material-ui/core"
 import React, { useState } from "react"
-import { QueryClient, useMutation } from "react-query"
+import { useMutation } from "react-query"
 import { addPost } from "./api"
+import { queryClient } from "../index"
 // import {istTextValid} from '../utils/validate'
 
 const useStyles = makeStyles((theme) => ({
@@ -27,16 +28,15 @@ function AddPost() {
 
   const classes = useStyles()
 
-  const queryClient = new QueryClient({
+  /*   const queryClient = new QueryClient({
     onError: (error) => {
       console.log(error)
     }
-  })
+  }) */
 
   const mutation = useMutation(addPost, {
     onSuccess: () => {
-      queryClient.refetchQueries("posts")
-      // queryClient.invalidateQueries("posts")
+      queryClient.invalidateQueries("posts")
     }
   })
 

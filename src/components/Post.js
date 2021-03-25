@@ -10,6 +10,7 @@ import DeleteIcon from "@material-ui/icons/Delete"
 import React from "react"
 import { useMutation } from "react-query"
 import { deletePost } from "./api"
+import { queryClient } from "../index"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Post({ elem }) {
-  const mutation = useMutation(deletePost)
+  const mutation = useMutation(deletePost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("posts")
+    }
+  })
   const classes = useStyles()
   function handleClick(id) {
     //
