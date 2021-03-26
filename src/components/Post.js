@@ -10,7 +10,7 @@ import DeleteIcon from "@material-ui/icons/Delete"
 import React from "react"
 import { useMutation } from "react-query"
 import { deletePost } from "./api"
-import { queryClient } from "../index"
+import { queryClient } from "./queryClient"
 
 const useStyles = makeStyles((theme) => ({
   container: {

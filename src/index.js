@@ -4,21 +4,9 @@ import App from "./App"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { ThemeProvider } from "@material-ui/core/styles"
 import theme from "./theme"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
-
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry(failureCount, error) {
-        if (error.status === 404) return false
-        else if (failureCount < 2) return true
-        else return false
-      }
-    }
-  }
-})
+import { queryClient } from "./components/queryClient"
 
 ReactDOM.render(
   <React.StrictMode>
